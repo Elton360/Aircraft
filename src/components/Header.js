@@ -1,48 +1,51 @@
-import { Layout, Image } from 'antd'
+import { CloseCircleOutlined, MenuOutlined } from '@ant-design/icons'
+import { Image, Dropdown } from 'antd'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import scrollToSection from '../helpers/scrollTo'
+import { HeaderStyled } from './Header.styled'
 
-const { Header: HeaderLayout } = Layout
+const HomeLink = () => <Link to="/">HOME</Link>
+const AboutLink = () => (
+  <Link onClick={() => scrollToSection('section-about')}>ABOUT US</Link>
+)
+const ServicesLink = () => (
+  <Link onClick={() => scrollToSection('section-services')}>SERVICES</Link>
+)
+const OurClientsLink = () => (
+  <Link onClick={() => scrollToSection('section-clients')}>OUR CLIENTS</Link>
+)
+const ReachOutLink = () => (
+  <Link onClick={() => scrollToSection('section-contact')}>REACH OUT</Link>
+)
+const CloseLink = () => (
+  <Link to="/">
+    <CloseCircleOutlined />
+  </Link>
+)
 
-const HeaderStyled = styled(HeaderLayout)`
-  background-color: #334257;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  height: 78px;
-  a {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #fff;
-    line-height: 0;
-    transition: all 0.2s;
-  }
+const items = [
+  { label: <HomeLink />, key: 'home' },
+  { label: <AboutLink />, key: 'about' },
+  { label: <ServicesLink />, key: 'services' },
+  { label: <OurClientsLink />, key: 'clients' },
+  { label: <ReachOutLink />, key: 'contact' },
+  {
+    label: <CloseLink />,
+    key: 'close',
+  },
+]
 
-  a:hover {
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 1);
-    transform: scale(1.05);
-    &::after {
-      margin-top: 8px;
-      display: block;
-      content: ' ';
-      width: 100%;
-      height: 1.5px;
-      background: white;
-    }
-  }
-`
-
-const Header = () => {
-  return (
-    <HeaderStyled>
-      <Link to="/">home</Link>
-      <Link to="/">Services</Link>
-      <Image preview={false} width={150} src="/temp_logo.png" />
-      <Link to="/">our clients</Link>
-      <Link to="/">reach out</Link>
-    </HeaderStyled>
-  )
-}
+const Header = () => (
+  <HeaderStyled>
+    <HomeLink />
+    <AboutLink />
+    <Image preview={false} width={150} src="/temp_logo.png" />
+    <ServicesLink />
+    <ReachOutLink />
+    <Dropdown menu={{ items }} trigger={['click']}>
+      <MenuOutlined />
+    </Dropdown>
+  </HeaderStyled>
+)
 
 export default Header

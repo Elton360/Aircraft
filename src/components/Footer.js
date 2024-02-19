@@ -1,13 +1,10 @@
-import { useState } from 'react'
-import { Button, Input, Layout, Space } from 'antd'
+import { Layout } from 'antd'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   InstagramOutlined,
   FacebookOutlined,
   LinkedinOutlined,
-  SmileOutlined,
-  SyncOutlined,
 } from '@ant-design/icons'
 import { Divider } from 'antd'
 
@@ -26,7 +23,12 @@ const FooterStyled = styled(FooterLayout)`
 const FooterBottom = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
+  @media (max-width: 900px) {
+    align-items: center;
+    flex-direction: column;
+  }
 `
 
 const FooterBottomItem = styled.div`
@@ -34,7 +36,6 @@ const FooterBottomItem = styled.div`
   flex-direction: column;
   align-items: baseline;
   max-width: 25%;
-  text-align: justify;
   a,
   span {
     margin-bottom: 15px;
@@ -54,6 +55,12 @@ const FooterBottomItem = styled.div`
     font-weight: bold;
     text-transform: uppercase;
   }
+
+  @media (max-width: 900px) {
+    align-items: center;
+    margin-bottom: 35px;
+    max-width: 100%;
+  }
 `
 
 const IconLinkWrapper = styled(Link)`
@@ -68,7 +75,6 @@ const IconLinkWrapper = styled(Link)`
 
 const Footer = () => (
   <>
-    {' '}
     <Divider />
     <FooterStyled>
       <FooterBottom>
