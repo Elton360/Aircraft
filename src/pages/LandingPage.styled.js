@@ -31,6 +31,7 @@ export const HeaderContent = styled(Section)`
   text-align: left;
   width: 100vw;
   height: calc(100vh - 78px);
+  min-height: 530px;
   margin-top: 0;
 `
 export const PrimaryHeadingText = styled.span`
